@@ -115,6 +115,8 @@ public class Main {
 - **isEmpty():** Checks if the priority queue is empty.
 - **size():** Returns the number of elements in the priority queue.
 
+
+
 ### Custom Comparator:
 
 To implement a max-heap, you can use a custom comparator.
@@ -141,6 +143,82 @@ public class Main {
     }
 }
 ```
+
+
+# Priority Queue with Custom Comparator in Java
+
+## Introduction
+
+A `PriorityQueue` in Java is a special type of queue where elements are ordered based on their priority. By default, the elements are ordered according to their natural ordering or by a `Comparator` provided at queue construction time.
+
+## Custom Comparator Example
+
+### Structure Explanation
+
+```java
+PriorityQueue<Pair> heap = new PriorityQueue<Pair>((x, y) -> x.dist - y.dist);
+```
+
+This line of code creates a `PriorityQueue` of `Pair` objects with a custom comparator. The custom comparator defines the order of the elements in the queue based on the `dist` field of the `Pair` objects.
+
+
+### Key Components
+
+1. **PriorityQueue<Pair>:** 
+   This creates a priority queue that will hold objects of type `Pair`.
+
+2. **(x, y) -> x.dist - y.dist:**
+   This is a lambda expression that defines the custom comparator. It compares two `Pair` objects (`x` and `y`) based on their `dist` fields. The comparator determines the order of the elements in the queue:
+   - If `x.dist` is less than `y.dist`, `x` will be placed before `y`.
+   - If `x.dist` is greater than `y.dist`, `x` will be placed after `y`.
+
+### Example
+
+Let's create a `Pair` class and use the priority queue.
+
+```java
+import java.util.PriorityQueue;
+
+class Pair {
+    int key;
+    int dist;
+
+    // Constructor
+    public Pair(int key, int dist) {
+        this.key = key;
+        this.dist = dist;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create a priority queue with a custom comparator
+        PriorityQueue<Pair> heap = new PriorityQueue<>((x, y) -> x.dist - y.dist);
+
+        // Add some pairs to the priority queue
+        heap.add(new Pair(1, 30));
+        heap.add(new Pair(2, 20));
+        heap.add(new Pair(3, 10));
+
+        // Remove and print pairs from the priority queue
+        while (!heap.isEmpty()) {
+            Pair pair = heap.poll();
+            System.out.println("Key: " + pair.key + ", Distance: " + pair.dist);
+        }
+    }
+}
+```
+
+### Output
+```
+Key: 3, Distance: 10
+Key: 2, Distance: 20
+Key: 1, Distance: 30
+```
+
+- The pairs are printed in the order of their `dist` values, from smallest to largest.
+
+
 
 ## Conclusion
 
