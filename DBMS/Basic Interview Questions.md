@@ -23,19 +23,14 @@
 3. Examples of popular RDBMS systems are MySQL, Oracle DB, etc.
 
 
-# My Project
+## 3. Differences between DBMS and RDBMS
 
-## Overview
 
-This is an example of a table in a README file.
-
-## Features
-
-| Feature       | Description                             | Status      |
-|---------------|-----------------------------------------|-------------|
-| Feature 1     | This is the description of feature 1.   | Complete    |
-| Feature 2     | This is the description of feature 2.   | In Progress |
-| Feature 3     | This is the description of feature 3.   | Not Started |
+| DBMS          |RDBMS                                    | 
+|---------------|-----------------------------------------|
+| DBMS stores data as file.     | RDBMS stores data in tabular form.   |
+| Data elements need to access individually.    | Multiple data elements can be accessed at the same time.   | 
+| No relationship between data.    | Data is stored in the form of tables which are related to each other.   |
 
 ## Contributors
 
