@@ -31,17 +31,12 @@
 | DBMS stores data as file.     | RDBMS stores data in tabular form.   |
 | Data elements need to access individually.    | Multiple data elements can be accessed at the same time.   | 
 | No relationship between data.    | Data is stored in the form of tables which are related to each other.   |
-
-## Contributors
-
-| Name          | Role                                    | GitHub Profile                               |
-|:--------------|:--------------------------------------:|---------------------------------------------:|
-| John Doe      | Developer                               | [@johndoe](https://github.com/johndoe)       |
-| Jane Smith    | Designer                                | [@janesmith](https://github.com/janesmith)   |
+| DBMS does not support distributed database. | RDBMS supports distributed database.|
+| xamples: XML, Window Registry, Forxpro, dbaseIIIplus etc. | Examples: MySQL, PostgreSQL, SQL Server, Oracle, Microsoft Access etc. |
 
 
 
-## 3. What is a Database?
+## 4. What is a Database?
 
 1. A Database is an organized, consistent, and logical collection of data that can easily be updated, accessed, and managed.
 
@@ -51,6 +46,62 @@
 
 4. DBMS extracts data from a database in the form of queries given by the user.
 
+
+## 5. Mention the issues with traditional file-based systems that make DBMS a better choice?
+
+1. The absence of indexing in a traditional file-based system leaves us with the only option of scanning the full page and hence making the access of content tedious and super slow.
+
+2. The other issue is redundancy and inconsistency as files have many duplicate and redundant data and changing one of them makes all of them inconsistent.
+
+3. Accessing data is harder in traditional file-based systems because data is unorganized in them.
+
+4. Another issue is the lack of concurrency control, which leads to one operation locking the entire page, as compared to DBMS where multiple operations can work on a single file simultaneously.
+
+5. Integrity check, data isolation, atomicity, security, etc. are some other issues with traditional file-based systems for which DBMSs have provided some good solutions.
+
+### Key Words
+
+1. **Inconsistency** :
+    - Data inconsistency is the scenario in DBMS where there are more than 2 tables within a database that work with the same data but receive it from different inputs.
+
+    ![Inconsistency Image](https://media.geeksforgeeks.org/wp-content/uploads/20230712160036/Data-Inconsistency.png)
+
+
+2. **Redundancy** : 
+    - Data redundancy in a Database Management System (DBMS) refers to the repetition of the same data in multiple places within a database.
+    - It is a concern because it can lead to inconsistencies, update anomalies, and increased storage requirements, impacting data integrity and database performance.
+
+3. **Integrity check** : 
+    - Integrity constraints are rules that help to maintain the accuracy and consistency of data in a database. 
+    - They can be used to enforce business rules or to ensure that data is entered correctly. 
+    - For example, a simple integrity constraint in DBMS might state that all customers must have a valid email address.
+
+4. **Data Isolation**:
+
+    - data isolation refers to maintaining actions between transactions to prevent interference with each other’s operations.
+    - The objective is to avoid situations where one transaction reads or modifies data while another transaction is simultaneously accessing it.
+    - By doing data isolation ensures the accuracy, reliability
+
+
+
+## 6. Explain a few advantages of a DBMS
+
+1. **Data Sharing**: Data from a single database can be simultaneously shared by multiple users. Such sharing also enables end-users to react to changes quickly in the database environment.
+
+2. **Integrity constraints**: The existence of such constraints allows storing of data in an organized and refined manner.
+
+3. **Controlling redundancy in a database**: Eliminates redundancy in a database by providing a mechanism that integrates all the data in a single database.
+
+4. **Data Independence**: This allows changing the data structure without altering the composition of any of the executing application programs.
+
+5. **Provides backup and recovery facility**: It can be configured to automatically create the backup of the data and restore the data in the database whenever required.
+
+6. **Data Security**:
+    - DBMS provides the necessary tools to make the storage and transfer of data more reliable and secure. 
+    - Authentication (the process of giving restricted access to a user) and encryption (encrypting sensitive data such as OTP, credit card information, etc.) are some popular tools used to secure data in a DBMS.
+
+
+## 7. Explain different languages present in DBMS.
 
 
  
