@@ -103,6 +103,130 @@
 
 ## 7. Explain different languages present in DBMS.
 
+![DBMS Languages](../DBMS/assets/database.jpg)
+
+### Data Definition Language (DDL)
+
+DDL commands are used to define the structure of the database. They include commands like CREATE, ALTER, DROP, and TRUNCATE.
+
+**CREATE**: Used to create a new database object, such as a table.
+
+```sql
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Email VARCHAR(100),
+    HireDate DATE
+);
+```
+
+**ALTER**: Used to modify an existing database object.
+
+```sql
+ALTER TABLE Employees ADD COLUMN Department VARCHAR(50);
+```
+
+**DROP**: Used to delete a database object.
+
+```sql
+DROP TABLE Employees;
+```
+
+**TRUNCATE**: Used to delete all rows from a table without deleting the table itself.
+
+```sql
+TRUNCATE TABLE Employees;
+```
+
+### Data Manipulation Language (DML)
+
+DML commands are used to manipulate the data within the database. They include commands like SELECT, INSERT, UPDATE, and DELETE.
+
+**SELECT**: Used to query and retrieve data from the database.
+
+```sql
+SELECT FirstName, LastName, Email FROM Employees WHERE Department = 'Sales';
+```
+
+**INSERT**: Used to add new rows to a table.
+
+```sql
+INSERT INTO Employees (EmployeeID, FirstName, LastName, Email, HireDate)
+VALUES (1, 'John', 'Doe', 'john.doe@example.com', '2023-01-15');
+```
+
+**UPDATE**: Used to modify existing data within a table.
+
+```sql
+UPDATE Employees SET Department = 'Marketing' WHERE EmployeeID = 1;
+```
+
+**DELETE**: Used to remove rows from a table.
+
+```sql
+DELETE FROM Employees WHERE EmployeeID = 1;
+```
+
+### Data Control Language (DCL)
+
+DCL commands are used to control access to data in the database. They include commands like GRANT and REVOKE.
+
+**GRANT**: Used to give users access privileges.
+
+```sql
+
+GRANT SELECT, INSERT ON Employees TO User1;
+
+```
+
+**REVOKE**: Used to remove access privileges from users.
+
+```sql
+
+REVOKE INSERT ON Employees FROM User1;
+
+```
+
+### Transaction Control Language (TCL)
+
+TCL commands are used to manage transactions within the database. They include commands like COMMIT, ROLLBACK, and SAVEPOINT.
+
+**COMMIT**: Used to save the changes made during the current transaction.
+
+```sql
+
+BEGIN;
+UPDATE Employees SET Department = 'IT' WHERE EmployeeID = 2;
+COMMIT;
+
+```
+
+**ROLLBACK**: Used to undo changes made during the current transaction.
+
+```sql
+BEGIN;
+UPDATE Employees SET Department = 'HR' WHERE EmployeeID = 3;
+ROLLBACK;
+```
+
+**SAVEPOINT**: Used to set a savepoint within a transaction.
+
+```sql
+
+BEGIN;
+UPDATE Employees SET Department = 'Finance' WHERE EmployeeID = 4;
+SAVEPOINT SavePoint1;
+UPDATE Employees SET Department = 'Admin' WHERE EmployeeID = 5;
+ROLLBACK TO SavePoint1;
+COMMIT;
+
+
+```
+
+
+
+
 
  
 
