@@ -225,10 +225,40 @@ COMMIT;
 ```
 
 
+## 8.  What is meant by ACID properties in DBMS?
+
+ACID stands for Atomicity, Consistency, Isolation, and Durability in a DBMS these are those properties that ensure a safe and secure way of sharing data among multiple users.
+
+![ACID Properties](https://s3.ap-south-1.amazonaws.com/myinterviewtrainer-domestic/public_assets/assets/000/000/265/original/acid_properties.png?1617187570)
+
+
+**Atomicity**: This property reflects the concept of either executing the whole query or executing nothing at all, which implies that if an update occurs in a database then that update should either be reflected in the whole database or should not be reflected at all.
+
+![Atomicity](https://s3.ap-south-1.amazonaws.com/myinterviewtrainer-domestic/public_assets/assets/000/000/266/original/atomicity-1.png?1617187688)
+
+
+![Atomicity](https://s3.ap-south-1.amazonaws.com/myinterviewtrainer-domestic/public_assets/assets/000/000/267/original/atomicity-2.png?1617187786)
+
+
+**Consistency**: This property ensures that the data remains consistent before and after a transaction in a database.
+
+![Consistency](https://s3.ap-south-1.amazonaws.com/myinterviewtrainer-domestic/public_assets/assets/000/000/219/original/acid-consistency.png?1616074548)
+
+
+**Isolation**: This property ensures that each transaction is occurring independently of the others. This implies that the state of an ongoing transaction doesn’t affect the state of another ongoing transaction.
+
+![Isolation](https://s3.ap-south-1.amazonaws.com/myinterviewtrainer-domestic/public_assets/assets/000/000/220/original/acid-isolation.png?1616074608)
+
+
+**Durability**: This property ensures that the data is not lost in cases of a system failure or restart and is present in the same state as it was before the system failure or restart.
 
 
 
- 
+## 9. Are NULL values in a database the same as that of blank space or zero?
+
+No, a NULL value is very different from that of zero and blank space as it represents a value that is assigned, unknown, unavailable, or not applicable as compared to blank space which represents a character and zero represents a number.
+
+Example: NULL value in “number_of_courses” taken by a student represents that its value is unknown whereas 0 in it means that the student hasn’t taken any courses.
 
 
 
