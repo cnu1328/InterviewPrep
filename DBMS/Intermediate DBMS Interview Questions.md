@@ -113,3 +113,176 @@ Imagine a library database where users can search for books. If user A is readin
 **Example**:
 
 In the same library database, if user C wants to borrow a book, an exclusive lock is placed on the book's data to update its availability status. While user C holds the exclusive lock, no other user can read or update the book's data, ensuring that the borrowing transaction is completed without conflicts.
+
+## 4. Explain the difference between the DELETE and TRUNCATE command in a DBMS.
+
+**DELETE** command: this command is needed to delete rows from a table based on the condition provided by the WHERE clause.
+
+1. It deletes only the rows which are specified by the WHERE clause.
+2. It can be rolled back if required.
+3. It maintains a log to lock the row of the table before deleting it and hence it’s slow.
+
+**TRUNCATE** command: this command is needed to remove complete data from a table in a database. It is like a DELETE command which has no WHERE clause.
+
+1. It removes complete data from a table in a database.
+2. It can't be rolled back even if required. ( truncate can be rolled back in some databases depending on their version but it can be tricky and can lead to data loss). Check this link for more details
+3. It doesn’t maintain a log and deletes the whole table at once and hence it’s fast.
+
+
+## 5. Explain the difference between intension and extension in a database
+
+Following is the major difference between intension and extension in a database:
+
+**Intension**: Intension or popularly known as database schema is used to define the description of the database and is specified during the design of the database and mostly remains unchanged.
+
+**Extension**: Extension on the other hand is the measure of the number of tuples present in the database at any given point in time. The extension of a database is also referred to as the snapshot of the database and its value keeps changing as and when the tuples are created, updated, or destroyed in a database.
+
+## 6. Explain different types of relationships amongst tables in a DBMS.
+
+Following are different types of relationship amongst tables in a DBMS system:
+
+### 1. One-to-One Relationship
+
+In a one-to-one relationship, each row in table X is linked to exactly one row in table Y, and vice versa. This is used when each entity in both tables corresponds uniquely to one another.
+
+![One to one](https://s3.ap-south-1.amazonaws.com/myinterviewtrainer-domestic/public_assets/assets/000/000/270/original/1_to_1.png?1617188060)
+
+**Example:**
+- **Tables:** `Person` and `Passport`
+- **Relationship:** Each person has one passport.
+
+
+**Tables:**
+- `Person`:
+  - `person_id` (Primary Key)
+  - `name`
+- `Passport`:
+  - `passport_id` (Primary Key)
+  - `person_id` (Foreign Key)
+
+**SQL:**
+```sql
+CREATE TABLE Person (
+    person_id INT PRIMARY KEY,
+    name VARCHAR(100)
+);
+
+CREATE TABLE Passport (
+    passport_id INT PRIMARY KEY,
+    person_id INT,
+    FOREIGN KEY (person_id) REFERENCES Person(person_id)
+);
+```
+
+### 2. One-to-Many Relationship
+
+In a one-to-many relationship, a single row in table X is related to multiple rows in table Y. This is common in situations where one entity can have multiple associated entities.
+
+![one to Many](https://s3.ap-south-1.amazonaws.com/myinterviewtrainer-domestic/public_assets/assets/000/000/271/original/1_to_n.png?1617188084)
+
+
+**Example:**
+- **Tables:** `Author` and `Book`
+- **Relationship:** One author can write many books.
+
+**Tables:**
+- `Author`:
+  - `author_id` (Primary Key)
+  - `name`
+- `Book`:
+  - `book_id` (Primary Key)
+  - `title`
+  - `author_id` (Foreign Key)
+
+**SQL:**
+```sql
+CREATE TABLE Author (
+    author_id INT PRIMARY KEY,
+    name VARCHAR(100)
+);
+
+CREATE TABLE Book (
+    book_id INT PRIMARY KEY,
+    title VARCHAR(100),
+    author_id INT,
+    FOREIGN KEY (author_id) REFERENCES Author(author_id)
+);
+```
+
+### 3. Many-to-Many Relationship
+
+In a many-to-many relationship, multiple rows in table X can be related to multiple rows in table Y. This requires a junction table to manage the associations.
+
+![many to many](https://s3.ap-south-1.amazonaws.com/myinterviewtrainer-domestic/public_assets/assets/000/000/272/original/m_to_m.png?1617188110)
+
+**Example:**
+- **Tables:** `Student` and `Course`
+- **Relationship:** Students can enroll in many courses, and each course can have many students.
+
+**Tables:**
+- `Student`:
+  - `student_id` (Primary Key)
+  - `name`
+- `Course`:
+  - `course_id` (Primary Key)
+  - `course_name`
+- `Enrollment` (Junction Table):
+  - `student_id` (Foreign Key)
+  - `course_id` (Foreign Key)
+
+**SQL:**
+```sql
+CREATE TABLE Student (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(100)
+);
+
+CREATE TABLE Course (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(100)
+);
+
+CREATE TABLE Enrollment (
+    student_id INT,
+    course_id INT,
+    PRIMARY KEY (student_id, course_id),
+    FOREIGN KEY (student_id) REFERENCES Student(student_id),
+    FOREIGN KEY (course_id) REFERENCES Course(course_id)
+);
+```
+
+### 4. Self-Referencing Relationship
+
+In a self-referencing relationship, rows in a table are related to other rows within the same table. This is often used for hierarchical data.
+
+![self - referencing](https://s3.ap-south-1.amazonaws.com/myinterviewtrainer-domestic/public_assets/assets/000/000/273/original/self_referencing.png?1617188132)
+
+
+
+**Example:**
+- **Table:** `Employee`
+- **Relationship:** An employee can report to another employee (a manager).
+
+**Table:**
+- `Employee`:
+  - `employee_id` (Primary Key)
+  - `name`
+  - `manager_id` (Foreign Key referencing `employee_id`)
+
+**SQL:**
+```sql
+CREATE TABLE Employee (
+    employee_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    manager_id INT,
+    FOREIGN KEY (manager_id) REFERENCES Employee(employee_id)
+);
+```
+
+### Summary
+
+- **One-to-One:** Each row in one table is linked to one row in another table.
+- **One-to-Many:** One row in one table is linked to multiple rows in another.
+- **Many-to-Many:** Multiple rows in one table are linked to multiple rows in another, using a junction table.
+- **Self-Referencing:** Rows in a table are linked to other rows in the same table.
+
