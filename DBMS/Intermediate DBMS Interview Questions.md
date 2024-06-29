@@ -286,3 +286,122 @@ CREATE TABLE Employee (
 - **Many-to-Many:** Multiple rows in one table are linked to multiple rows in another, using a junction table.
 - **Self-Referencing:** Rows in a table are linked to other rows in the same table.
 
+
+## 7. Explain different levels of data abstraction in a DBMS.
+
+The process of hiding irrelevant details from users is known as data abstraction. Data abstraction can be divided into 3 levels:
+
+![levels](https://s3.ap-south-1.amazonaws.com/myinterviewtrainer-domestic/public_assets/assets/000/000/223/original/levels_of_abstraction.png?1616075395)
+
+
+### 1. Physical Level
+
+- **What it is:** This is the lowest level of abstraction and deals with how data is physically stored in the database.
+- **Who uses it:** Database administrators but not usually developers or users.
+- **Details:** Includes data storage details like file formats, indices, and data compression.
+
+**Example:** Think of the data stored on disks or in specific file structures. You don’t need to know how the data is physically organized or stored.
+
+### 2. Conceptual (Logical) Level
+
+- **What it is:** This level defines what data is stored and the relationships between those data points.
+- **Who uses it:** Database developers and administrators.
+- **Details:** Includes tables, columns, data types, and relationships (like foreign keys).
+
+**Example:** 
+- Tables like `Customer` and `Order` with fields such as `customer_id`, `name`, `order_id`, and `order_date`.
+- Defines how these tables are related (e.g., one customer can have many orders).
+
+### 3. External (View) Level
+
+- **What it is:** This level describes how users see the data, hiding the complexity of the underlying tables.
+- **Who uses it:** End users or applications.
+- **Details:** Users interact with views that present data in a specific way without showing the entire database schema.
+
+**Example:**
+- A **view** might show only the `customer_name` and `order_date` from the `Customer` and `Order` tables, providing a simplified interface.
+
+### Real-World Example
+
+Imagine a library database:
+
+1. **Physical Level:**
+   - Data stored on a disk in binary format, with file structures for books, authors, and borrow records.
+   - Details like indexing methods and file paths are hidden.
+
+2. **Conceptual (Logical) Level:**
+   - **Tables:**
+     - `Book` (with columns like `book_id`, `title`, `author_id`)
+     - `Author` (with columns like `author_id`, `name`)
+     - `Borrow` (with columns like `borrow_id`, `book_id`, `member_id`)
+   - Relationships between tables (e.g., each book has one author).
+
+3. **External (View) Level:**
+   - **View:** `AvailableBooksView` might show only available books to users with fields like `title` and `author_name`, derived from the `Book` and `Author` tables.
+   - Users run queries to see available books without seeing all the underlying data.
+
+### Summary
+
+- **Physical Level:** How data is physically stored.
+- **Conceptual Level:** Structure of the database (tables, relationships).
+- **External Level:** What users interact with (simplified views of the data).
+
+
+## 8. What is Data Warehousing?
+
+The process of collecting, extracting, transforming, and loading data from multiple sources and storing them in one database is known as data warehousing. A data warehouse can be considered as a central repository where data flows from transactional systems and other relational databases and is used for data analytics. A data warehouse comprises a wide variety of an organization’s historical data that supports the decision-making process in an organization.
+
+![Data WareHousing](https://s3.ap-south-1.amazonaws.com/myinterviewtrainer-domestic/public_assets/assets/000/000/268/original/data_warehousing.png?1617187867)
+
+
+### Key Components:
+
+1. **Data Collection:**
+   - Data is collected from multiple sources, such as transactional systems, relational databases, and external sources.
+
+2. **ETL Process (Extract, Transform, Load):**
+   - **Extract:** Data is pulled from different source systems.
+   - **Transform:** Data is cleaned and formatted to ensure consistency.
+   - **Load:** Data is stored in the data warehouse.
+
+3. **Central Repository:**
+   - A single database where all the integrated data is stored, often optimized for query performance.
+
+4. **Data Analytics:**
+   - The data warehouse supports various analytical processes, such as reporting, data mining, and machine learning, helping organizations make informed decisions.
+
+### Example:
+
+**Scenario:** An online retail company wants to analyze customer behavior and sales performance.
+
+1. **Data Sources:**
+   - **Transactional Systems:** Orders, customer interactions.
+   - **CRM:** Customer information.
+   - **ERP:** Inventory and supply chain data.
+
+2. **ETL Process:**
+   - **Extract:** Data from orders, customer info, inventory levels.
+   - **Transform:** Clean data (e.g., correct formatting, remove duplicates).
+   - **Load:** Store in the data warehouse.
+
+3. **Data Warehouse Structure:**
+   - **Tables:** 
+     - `Customers` (customer_id, name, demographics)
+     - `Sales` (order_id, customer_id, amount, date)
+     - `Products` (product_id, name, category)
+
+4. **Analytics:**
+   - **Example Queries:**
+     - Analyze sales trends over time.
+     - Identify top-selling products.
+     - Understand customer demographics.
+
+### Benefits:
+
+- **Centralized Data:** All data is in one place, making it easier to access and analyze.
+- **Historical Analysis:** Stores historical data, enabling trend analysis.
+- **Improved Decision-Making:** Supports data-driven decisions with comprehensive reports and insights.
+
+### Real-World Example:
+
+A **bank** might use a data warehouse to consolidate customer transaction data from various branches and online services. By analyzing this data, the bank can identify spending patterns, optimize marketing strategies, and improve customer service.
