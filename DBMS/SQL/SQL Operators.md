@@ -177,7 +177,7 @@ WHERE city IS NULL;
 | Alice| LA     |
 
 **Result:**
-| name |
+| name |    
 |------|
 | Tom  |
 
