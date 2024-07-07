@@ -94,13 +94,3 @@ DELETE FROM food WHERE food_id = ?;
 
 
 
-
-[![Watch the video](../assets/access.png)](../assets/videoplayback.mp4)
-
-
-
-
-
-
-
-
