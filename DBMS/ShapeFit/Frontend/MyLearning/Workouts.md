@@ -1,4 +1,4 @@
-## Shapefitio Features: Workouts
+## Workouts
 
 ### Overview
 
