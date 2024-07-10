@@ -70,9 +70,11 @@ Shapefitio is an application that helps gym trainers manage their clients by ass
 9. **Dynamic Label Updates**
    - Learned to dynamically update label information when data changes in the input fields.
 
-During the internship, I worked on and implemented end-to-end features. Let us go over them one by one with videos to help you understand my work better.
+**During the internship, I worked on and implemented end-to-end features. Let us go over them one by one with videos to help you understand my work better.**
 
 ## Food Items
+
+https://github.com/cnu1328/InterviewPrep/assets/110097436/c53d3a0c-4554-4d61-b577-1b7ccb0bbd6f
 
 ### Features
 
