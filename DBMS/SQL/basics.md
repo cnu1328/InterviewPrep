@@ -331,19 +331,18 @@ VALUES
     - Referential integrity in the `diet_plan_food` table is enforced using foreign key constraints, ensuring that `diet_plan_id` and `food_id` must exist in the `diet_plan` and `food` tables, respectively.
 
 16. **Write an SQL query to find diet plans that have more than a certain number of meals.**
-    ```sql
-    SELECT diet
-    ```
 
-\_plan_id, COUNT(DISTINCT meal_name) AS meal_count
-FROM diet_plan_food
-GROUP BY diet_plan_id
-HAVING meal_count > 1;
+```sql
+    SELECT diet_plan_id, COUNT(DISTINCT meal_name) AS meal_count
+    FROM diet_plan_food
+    GROUP BY diet_plan_id
+    HAVING meal_count > 1;
 
-````
+```
+
 | diet_plan_id | meal_count |
-|--------------|------------|
-| 1 | 2 |
+| ------------ | ---------- |
+| 1            | 2          |
 
 17. **What are the benefits of using `uuid` as a primary key?**
 
@@ -448,4 +447,7 @@ HAVING meal_count > 1;
     );
     ```
     - This table would store historical records of the diet plan whenever changes are made, along with a timestamp of the change.
-````
+
+```
+
+```
