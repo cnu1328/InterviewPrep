@@ -106,3 +106,5 @@ DELETE FROM food WHERE food_id = ?;
 [![Watch the video](../assets/access.png)](../assets/videoplayback.mp4)
 
 https://github.com/cnu1328/InterviewPrep/assets/110097436/a96b9e9e-5817-441a-be32-c1d04e7a344e
+
+![Screenshot (62)](https://github.com/cnu1328/InterviewPrep/assets/110097436/57d764df-60f9-4e07-9d1c-06f912d473fb)
