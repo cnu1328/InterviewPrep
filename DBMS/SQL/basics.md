@@ -96,8 +96,6 @@ SELECT * FROM food;
 
 ![Screenshot (62)](https://github.com/cnu1328/InterviewPrep/assets/110097436/cb19a211-9584-4fdc-8e15-85830f7299f4)
 
-Sure, here are the SQL commands written in a structured way:
-
 ### Creating Tables
 
 #### `dietplan` Table
