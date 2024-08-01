@@ -551,3 +551,278 @@ group by BA.author_name, BA.book_id
 having count(distinct BC.branch_id) > 1
 
 ```
+
+31. **Retrieve the titles of all books along with the total number of copies available across all branches.**
+
+```sql
+
+select B.Title, sum(no_of_copes) as Total_Copies
+from Book B
+join Book_Copies BC
+on B.book_id = BC.book_id
+group by B.Title;
+
+```
+
+32. **Find the branches that have at least one book published after 2015.**
+
+```sql
+
+select distinct LB.branch_name
+from Library_Branch LB
+join Book_Copies BC
+on LB.branch_id = BC.branch_id
+join Book B
+on B.book_id = BC.branch_id
+where B.pub_year > 2015;
+
+```
+
+33. **List all books along with the names of their publishers, ordered by publisher name.**
+
+```sql
+
+select B.*
+from Book B
+order by B.publisher_name;
+
+```
+
+34. **Retrieve the list of all books published by 'Pearson' along with their authors' names.**
+
+```sql
+
+select B.*, BA.author_name
+from Book B
+join Book_Author BA
+on B.book_id = BA.book_id
+where B.publisher_name = "Pearson";
+```
+
+35. **Find the book titles that have been borrowed by all borrowers.**
+
+```sql
+
+select B.title
+from Book B
+join Book_Lending BL
+on B.book_Id = BL.book_id
+group by B.title
+having count(distinct card_no) = (
+    select count(distinct card_no)
+    from Book_Lending
+);
+
+```
+
+36. **Retrieve the average number of books borrowed per month in 2017.**
+
+```sql
+
+select extract(MONTH from Date_out) as Month,
+count(book_id) / 12.0 as Avg_Borrow
+from Book_Lending
+where extract(Year from Date_out) = 2017
+group by EXTRACT(MONTH FROM Date_Out);
+
+```
+
+37. **List all publishers and the number of books they have published.**
+
+```sql
+
+select P.publisher_Name, count(B.book_Id) as Total_Books
+from Publisher P
+join Book B
+on P.publisher_name = B.publisher_name
+group by P.publisher_name;
+
+-- or
+
+select B.publisher_name, count(B.book_Id)
+from Book B
+group by B.publisher_name;
+
+```
+
+38. **Find the books that have the highest and lowest number of copies in a single branch.**
+
+```sql
+
+select B.title
+from Book B
+join Book_Copies BC
+on BC.book_id = B.book_id
+where BC.number_of_copies = (select Max(number_of_copies) from Book_Copies)
+or BC.number_of_copies = (select Min(number_of_copies) from Book_Copies);
+
+```
+
+39. **Retrieve the details of books published in each year along with the number of books published in that year.**
+
+```sql
+
+select B.pub_year, Count(B.book_Id) as Num_Books, Group_Concat(B.title) as Titles
+from Book B
+group by B.Pub_year
+
+```
+
+40. **List the branches along with the total number of books borrowed from each branch in 2017.**
+
+```sql
+
+select LB.branch_name, sum(BL.book_Id)
+from Library_Branch LB
+join Book_Lending BL
+on LB.branch_id = BL.branch_Id
+where Extract(Year from Date_out) = 2017
+group by LB.branch_name;
+```
+
+41. **Retrieve the list of books that have been borrowed by the most number of distinct borrowers.**
+
+```sql
+
+select B.title from
+Book B
+join Book_Lending BL
+on B.book_Id = BL.book_id
+group by B.title
+order by count(distinct BL.card_no) desc
+limit 1;
+```
+
+42. **Find the names of all borrowers who have borrowed books from the 'Downtown' branch but not from the 'Uptown' branch.**
+
+```sql
+
+select BL.card_no
+from Book_Lending BL
+join Library_Branch LB
+on BL.branch_id = LB.branch_id and LB.branch_name = "Downtown"
+where BL.card_no not in (
+    select BL1.card_no
+    from Book_Lending BL1
+    join Library_Branch LB1
+    on BL1.branch_id = LB1.branch_id and LB1.branch_name = "UPtown";
+)
+
+```
+
+43. **Retrieve the list of books along with their authors and the number of times they have been borrowed.**
+
+```sql
+
+select B.Title, BA.author_name, count(BL.book_id) as Book_Count
+from Book B
+join Book_Authors BA
+on BA.book_id = B.book_id
+Left join Book_Lending BL
+on B.book_Id  BL.book_id
+group by B.titl, BA.author_name;
+
+```
+
+44. **Find the names of borrowers who have borrowed the same book more than once.**
+
+```sql
+
+select card_no, count(book_id)
+from Book_Lending
+group by card_no, book_id
+having count(book_id) > 1;
+
+```
+
+45. **Retrieve the details of books that have never been borrowed.**
+
+```sql
+
+select B.*
+from Book B
+left join Book_Lending BL
+on B.book_id = BL.book_id
+where BL.book_id is Null
+
+```
+
+46. **Find the branches that have the maximum and minimum number of book copies.**
+
+```sql
+
+select LB.branch_name, sum(BC.num_of_copies) as Total_sum
+from Library_Branch LB
+join Book_Copies BC
+on BC.branch_id = LB.branch_id
+group by LB.branch_name
+having sum( BC.num_of_copies) = (
+    select Max(Total)
+    from (
+        select sum(BC.num_of_copies) as Total
+        from Book_Copies BC
+        group by BC.branch_id
+    ) as T1
+)
+or
+sum(BC.num_of_copies) = (
+    select Min(Total)
+    from (
+        select sum(BC.num_of_copies) as Total
+        from Book_copies BC
+        group by BC.branch_id
+    ) as T2
+);
+
+```
+
+47. **Retrieve the list of borrowers along with the total number of books they have borrowed in 2017.**
+
+```sql
+
+select BL.card_no, sum(BL.book_id) as Books_Borrowed
+from Book_Lending BL
+where Extract(Year from Date_out) = 2017
+group by BL.card_no;
+
+
+```
+
+48. **List the books along with their authors that have been borrowed by the borrower with Card_No '1001'.**
+
+```sql
+
+select B.title, BA.author_name
+from Book B
+join Book_Author BA
+on BA.book_id = B.book_id
+join Book_Lending BL
+on BL.book_id = B.book_id
+where BL.card_no = '1001';
+```
+
+49. **Find the branches that have books borrowed by more than 100 distinct borrowers in 2017.**
+
+```sql
+
+select LB.branch_name
+from Library_Branch LB
+join Book_Lending BL
+on BL.branch_Id = LB.branch_id
+where Extract(Year from BL.Date_out) = 2017
+group by LB.branch_name
+having count(distinct BL.card_no) > 100;
+```
+
+50. **Retrieve the list of books that have been borrowed in every month of the year 2017.**
+
+```sql
+
+select B.Title from Books B
+join Book_Lending BL
+on BL.book_id = B.book_id
+where Extract(Year from BL.date_out) = 2017;
+group by B.Title
+having count(distinct Extract(Month from BL.date_out))  = 12;
+
+```
