@@ -124,3 +124,27 @@ greet('Alice', 'Hello')  # 'Alice' and 'Hello' are arguments
 35. The String Constant Pool is a special memory area in Java Heap where String literals and interned strings are stored for reuse.
 
 36. Daemon threads are typically used for background supporting tasks and do not prevent the JVM from exiting once all user threads have completed.
+
+37. The ls -a command in Linux lists all contents of a directory, including hidden files and directories. Hidden files are those whose names begin with a dot (.).
+
+38. The `/etc` directory contains all the system-wide configuration files and shell scripts that are used to boot and initialize the system.
+
+39. The ext4 (fourth extended filesystem) is the most commonly used file system type in modern Linux distributions due to its robustness and performance.
+
+40. The man (manual) command is used to display the manual pages for other commands in Linux.
+
+41. The -r (recursive) option in the rm command is used to remove directories and their contents recursively.
+
+42. The du (disk usage) command estimates and displays the disk space used by files and directories.
+
+43. If the number of inodes (which store file metadata) is exhausted, it can prevent new files from being created, causing the df command to show incorrect free space.
+
+44. The init process is the first process started by the kernel and is responsible for initializing the system during the boot process.
+
+45. A zombie process is a process that has completed execution but still has an entry in the process table, usually because its parent process has not read its exit status.
+
+46. The `kill -9` command sends the SIGKILL signal to forcibly terminate the process with PID 1234.
+
+47. A `shell script` is a text file containing a series of commands that are executed by the shell.
+
+48. The `shebang (#!)` at the beginning of a shell script specifies the path to the interpreter that should be used to execute the script.
